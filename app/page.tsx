@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import Hero from './_components/Hero';
+import Gift from './_components/Gift';
+import HowItWorks from './_components/HowItWorks';
+import { examplePackages } from '@/utils/packages';
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+    return (
+        <>
+            <Hero />
+            <Gift packages={examplePackages} />
+            <HowItWorks />
+        </>
+    );
+};
 
-export default Home
+export default Home;
