@@ -5,7 +5,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
+  // DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -27,19 +27,19 @@ const ModalForm = () => {
     sender_business_name: "",
     sender_tel: "",
   });
-  const [recieverPackage, setRecieverPackage] = useState([
+  const [receiverPackage, setReceiverPackage] = useState([
     {
       id: 1,
-      reciever_name: "",
-      reciever_tel: "",
-      reciever_address: "",
-      reciever_note: "",
+      receiver_name: "",
+      receiver_tel: "",
+      receiver_address: "",
+      receiver_note: "",
       package_name: "",
       package_offer: "",
     },
   ]);
 
-  const reqBody = { senderDetails, receiverDetails: recieverPackage };
+  const reqBody = { senderDetails, receiverDetails: receiverPackage };
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -47,23 +47,23 @@ const ModalForm = () => {
   };
 
   const addReceiverPackage = () => {
-    setRecieverPackage([
-      ...recieverPackage,
+    setReceiverPackage([
+      ...receiverPackage,
       {
-        id: recieverPackage.length + 1,
-        reciever_name: "",
-        reciever_tel: "",
-        reciever_address: "",
-        reciever_note: "",
+        id: receiverPackage.length + 1,
+        receiver_name: "",
+        receiver_tel: "",
+        receiver_address: "",
+        receiver_note: "",
         package_name: "",
         package_offer: "",
       },
     ]);
   };
 
-  const removeRecieverPackage = (id: number) => {
-    if (recieverPackage.length <= 1) return;
-    setRecieverPackage(recieverPackage.filter((pkg) => pkg.id !== id));
+  const removeReceiverPackage = (id: number) => {
+    if (receiverPackage.length <= 1) return;
+    setReceiverPackage(receiverPackage.filter((pkg) => pkg.id !== id));
   };
 
   const handleSenderChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -73,9 +73,9 @@ const ModalForm = () => {
     });
   };
 
-  const handleRecieverChange = (id: number, field: string, value: string) => {
-    setRecieverPackage(
-      recieverPackage.map((pkg) =>
+  const handleReceiverChange = (id: number, field: string, value: string) => {
+    setReceiverPackage(
+      receiverPackage.map((pkg) =>
         pkg.id === id ? { ...pkg, [field]: value } : pkg
       )
     );
@@ -130,14 +130,14 @@ const ModalForm = () => {
                   />
                 </div>
 
-                {recieverPackage.map((pkg) => (
+                {receiverPackage.map((pkg) => (
                   <>
                     <div className="flex justify-between px-2 h-auto items-center">
                       <h1 className="font-semibold">
                         Reciever&apos;s information & package
                       </h1>
                       <button
-                        onClick={() => removeRecieverPackage(pkg.id)}
+                        onClick={() => removeReceiverPackage(pkg.id)}
                         className="text-red-500"
                       >
                         Remove
@@ -151,7 +151,7 @@ const ModalForm = () => {
                         name="reciever_name"
                         className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                         onChange={(event) =>
-                          handleRecieverChange(
+                          handleReceiverChange(
                             pkg.id,
                             "reciever_name",
                             event.target.value
@@ -165,7 +165,7 @@ const ModalForm = () => {
                         name="reciever_tel"
                         className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                         onChange={(event) =>
-                          handleRecieverChange(
+                          handleReceiverChange(
                             pkg.id,
                             "reciever_tel",
                             event.target.value
@@ -182,7 +182,7 @@ const ModalForm = () => {
                         name="reciever_address"
                         className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                         onChange={(event) =>
-                          handleRecieverChange(
+                          handleReceiverChange(
                             pkg.id,
                             "reciever_address",
                             event.target.value
@@ -196,7 +196,7 @@ const ModalForm = () => {
                         name="reciever_note"
                         className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                         onChange={(event) =>
-                          handleRecieverChange(
+                          handleReceiverChange(
                             pkg.id,
                             "reciever_note",
                             event.target.value
@@ -209,7 +209,7 @@ const ModalForm = () => {
                     <div className="flex flex-col gap-8 md:flex-row p-2">
                       <Select
                         onValueChange={(value) =>
-                          handleRecieverChange(pkg.id, "package_name", value)
+                          handleReceiverChange(pkg.id, "package_name", value)
                         }
                       >
                         <SelectTrigger className=" h-12 focus:border-green-400">
@@ -223,7 +223,7 @@ const ModalForm = () => {
                             >
                               <h1>
                                 {christmasPackage.packageName} -{" "}
-                                {`${christmasPackage.packagePrice},000`}
+                                {`${christmasPackage.packagePrice}`}
                               </h1>
                             </SelectItem>
                           ))}
@@ -232,7 +232,7 @@ const ModalForm = () => {
 
                       <Select
                         onValueChange={(value) =>
-                          handleRecieverChange(pkg.id, "package_offer", value)
+                          handleReceiverChange(pkg.id, "package_offer", value)
                         }
                       >
                         <SelectTrigger className="h-12 focus:border-green-400">

@@ -71,8 +71,8 @@ export const packageOffers: {
   packageOfferName: string;
   packageOfferValue: string;
 }[] = [
-  { packageOfferName: "Provisions", packageOfferValue: "provision" },
-  { packageOfferName: "Food gourmet", packageOfferValue: "food_gourmet" },
+  { packageOfferName: "Provisions", packageOfferValue: "Provision" },
+  { packageOfferName: "Food gourmet", packageOfferValue: "Food Gourmet" },
 ];
 
 export const christmasPackages: {
@@ -83,21 +83,21 @@ export const christmasPackages: {
   {
     packageName: "Joyful Starter Package",
     packageValue: "joyful",
-    packagePrice: "28",
+    packagePrice: "28000",
   },
   {
     packageName: "Festive Bliss Package",
     packageValue: "festive",
-    packagePrice: "40",
+    packagePrice: "40000",
   },
   {
     packageName: "Deluxe Package",
     packageValue: "deluxe",
-    packagePrice: "60",
+    packagePrice: "60000",
   },
   {
     packageName: "Grand Celebration Package",
     packageValue: "grand",
-    packagePrice: "100",
+    packagePrice: "100000",
   },
 ];
