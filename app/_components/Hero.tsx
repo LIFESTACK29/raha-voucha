@@ -1,11 +1,14 @@
 import React from 'react';
 import ParentLayout from './ParentLayout';
 import Image from 'next/image';
+
 const Hero = () => {
     return (
-        <div className="h-screen bg-hero_bg bg-cover bg-no-repeat bg-center text-white pt-6 overflow-hidden">
+        <div className="h-screen bg-hero_bg bg-cover bg-no-repeat bg-center text-white pt-6 overflow-hidden relative">
+            <div className="absolute inset-0 bg-black bg-opacity-50 z-10"></div>
+
             <ParentLayout>
-                <nav>
+                <nav className="relative z-20">
                     <Image
                         src={'/logo.png'}
                         alt="Logo"
@@ -13,7 +16,7 @@ const Hero = () => {
                         width={220}
                     />
                 </nav>
-                <section className="flex h-[100%] flex-col justify-end">
+                <section className="flex h-[100%] flex-col justify-end relative z-20">
                     <div className="text-center flex flex-col items-center mt-[80px] px-5">
                         <h1 className="leading-normal text-4xl max-w-[997px] md:text-6xl text-[#bbcf8d] w-full md:leading-[80px] animate-fade-in font-bold">
                             🎄 Thoughtfully gift your <br />{' '}
