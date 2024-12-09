@@ -52,7 +52,7 @@ const Gift = ({ packages }: { packages: any }) => {
                                     : 'bg-[#f2e8c8] self-end'
                             } px-4 py-8 rounded-md md:w-1/2`}
                         >
-                            <ol className="list-decimal flex flex-wrap gap-8 ml-12 mb-4">
+                            <ol className="list-decimal flex flex-wrap gap-8 ml-12">
                                 {item.value === 'provision' &&
                                     item.itemContent.map(
                                         (content: any, index: number) => (
@@ -66,7 +66,6 @@ const Gift = ({ packages }: { packages: any }) => {
                                         )
                                     )}
                             </ol>
-                            <ModalForm value={item.value} packageName={currentPackage.packageTitle}/>
                         </div>
                     ))}
                 </div>
@@ -104,6 +103,7 @@ const Gift = ({ packages }: { packages: any }) => {
                             ></path>
                         </svg>
                     </button>
+                    <ModalForm />
                     <button
                         onClick={handleNext}
                         disabled={currentIndex === packages.length - 1}
