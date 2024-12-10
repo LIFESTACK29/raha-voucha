@@ -248,7 +248,7 @@ const ModalForm = () => {
                               >
                                 <h1>
                                   {christmasPackage.packageName} -{" "}
-                                  {`${christmasPackage.packagePrice},000`}
+                                  {`${christmasPackage.packagePrice}`}
                                 </h1>
                               </SelectItem>
                             ))}
