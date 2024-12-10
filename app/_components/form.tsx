@@ -55,6 +55,7 @@ const ModalForm = () => {
         toast.error(message);
         return;
       }
+      console.log(message);
       setLoading(false);
       toast.success(message);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -106,12 +107,12 @@ const ModalForm = () => {
         <DialogTrigger className="bg-[#bbcf8d] font-light text-lg px-6 py-3 rounded-md">
           Select Package
         </DialogTrigger>
-        <DialogContent className="py-12 px-10">
+        <DialogContent className="md:py-12 px-5 py-10 md:px-10">
           <DialogHeader>
-            <DialogTitle>Place an Order </DialogTitle>
+            <DialogTitle className="text-left">Place an Order </DialogTitle>
             <DialogDescription className="h-[70vh] overflow-y-auto">
               <form onSubmit={handleSubmit}>
-                <h1 className="font-semibold pt-5 px-2">
+                <h1 className="font-semibold pt-5 px-2 text-left">
                   Sender&apos;s information
                 </h1>
 
@@ -157,7 +158,7 @@ const ModalForm = () => {
                     <>
                       <div className="flex justify-between px-2 h-auto items-center my-2">
                         <h1 className="font-semibold">
-                          Reciever&apos;s information & package
+                          Receiver&apos;s information & package
                         </h1>
                         {index + 1 > 1 && (
                           <button
@@ -173,30 +174,30 @@ const ModalForm = () => {
                         <input
                           type="text"
                           required
-                          name="reciever_name"
+                          name="receiver_name"
                           className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                           onChange={(event) =>
                             handleRecieverChange(
                               pkg.id,
-                              "reciever_name",
+                              "receiver_name",
                               event.target.value
                             )
                           }
-                          placeholder="Reciever's Name"
+                          placeholder="Recieier's Name"
                         />
                         <input
                           type="text"
                           required
-                          name="reciever_tel"
+                          name="receiver_tel"
                           className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                           onChange={(event) =>
                             handleRecieverChange(
                               pkg.id,
-                              "reciever_tel",
+                              "receiver_tel",
                               event.target.value
                             )
                           }
-                          placeholder="Reciever's Phone Number"
+                          placeholder="Receiver's Phone Number"
                         />
                       </div>
 
@@ -204,30 +205,30 @@ const ModalForm = () => {
                         <input
                           type="text"
                           required
-                          name="reciever_address"
+                          name="receiver_address"
                           className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                           onChange={(event) =>
                             handleRecieverChange(
                               pkg.id,
-                              "reciever_address",
+                              "receiver_address",
                               event.target.value
                             )
                           }
-                          placeholder="Reciever's Address"
+                          placeholder="Receiver's Address"
                         />
                         <input
                           type="text"
                           required
-                          name="reciever_note"
+                          name="receiver_note"
                           className="border p-3 h-12 bg-[#ecebf382] rounded-md text-sm md:text-base block outline-none w-full focus:border-green-400 duration-200"
                           onChange={(event) =>
                             handleRecieverChange(
                               pkg.id,
-                              "reciever_note",
+                              "receiver_note",
                               event.target.value
                             )
                           }
-                          placeholder="Drop a note, you would like the reciever to get"
+                          placeholder="Drop a note, you would like the receiver to get"
                         />
                       </div>
 
@@ -248,7 +249,7 @@ const ModalForm = () => {
                               >
                                 <h1>
                                   {christmasPackage.packageName} -{" "}
-                                  {`${christmasPackage.packagePrice}`}
+                                  {`${christmasPackage.packagePrice.toLocaleString()}`}
                                 </h1>
                               </SelectItem>
                             ))}
