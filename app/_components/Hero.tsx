@@ -20,11 +20,11 @@ const Hero = () => {
         <section className="flex h-[100%] flex-col justify-end relative z-20">
           <div className="text-center flex flex-col items-center mt-[80px] px-5">
             <h1 className="leading-normal text-2xl max-w-[997px] md:text-6xl text-[#bbcf8d] w-full md:leading-[80px] animate-fade-in font-bold pb-4 md:pb-0">
-              🎄 Thoughtfully gift your <br /> <span>employees</span>
+              🎄 Thoughtfully gift your <br /> <span className="text-white">employees</span>
               <br />
               this holiday season 🎄
             </h1>
-            <p className="leading-normal text-[16px] mt-4 font-light md:text-xl text-[#bbcf8d] md:max-w-[700px] max-w-[426px] text-base md:font-normal">
+            <p className="md:tracking-wider text-[16px] mt-4 font-light md:text-xl text-white md:max-w-[700px] max-w-[426px] text-base md:font-normal">
               Celebrate the people who made your year unforgettable with
               thoughtfully curated hampers & food bundles—delivered free of
               charge by Raha.

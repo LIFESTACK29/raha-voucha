@@ -27,21 +27,23 @@ const Gift = ({ packages }: { packages: any }) => {
   return (
     <ParentLayout>
       <div className="py-12 md:w-7/12 mx-auto text-center" id="gift">
-        <p className="leading-normal md:text-4xl font-bold text-2xl ">
+        <p className="leading-normal md:text-4xl font-bold text-2xl text-primaryColorText">
           Thoughtfully curated gifts for every budget
         </p>
-        <p className="leading-normal font-light mt-4 text-neutral-gray-100 text-base md:text-xl md:font-normal">
+        <p className="leading-normal font-light mt-4 text-neutral-gray-100 text-base md:text-xl md:font-normal text-primaryColorText">
           From corporate gifting to holiday surprises, we&apos;ve got you
           covered with packages that make celebrating your team, loved ones easy
           and budget friendly.
         </p>
       </div>
-      <div className="bg-[#edf1fd] p-4 sm:p-12 mb-12 rounded-md w-full mx-auto max-w-7xl">
+      <div className="bg-[#e0f0ff] p-4 sm:p-12 mb-12 rounded-md w-full mx-auto max-w-7xl">
         <div className="text-center mb-6">
-          <h1 className="leading-normal font-semibold md:text-4xl md:font-bold text-2xl ">
+          <h1 className="leading-normal font-semibold md:text-4xl md:font-bold text-2xl text-primaryColorText">
             {currentPackage.packageTitle}
           </h1>
-          <p className="mt-2 font-light md:font-normal text-xl">{currentPackage.price}</p>
+          <p className="mt-2 font-light md:font-normal text-xl text-primaryColorText">
+            {currentPackage.price}
+          </p>
         </div>
         <div className="flex flex-col gap-6">
           {currentPackage.items.map((item: any) => (
@@ -49,9 +51,9 @@ const Gift = ({ packages }: { packages: any }) => {
               key={item.value}
               className={`${
                 item.value === "provision"
-                  ? "bg-[#849b51] self-start"
-                  : "bg-[#f2e8c8] self-end"
-              } px-4 py-8 rounded-md md:w-1/2`}
+                  ? "bg-primaryColor self-start"
+                  : "bg-[#ffeee0] self-end"
+              } px-4 py-8 rounded-md md:w-1/2 text-primaryColorText`}
             >
               <ol className="list-decimal flex flex-wrap gap-8 ml-8 md:ml-12">
                 {item.value === "provision" &&

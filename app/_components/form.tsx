@@ -104,7 +104,7 @@ const ModalForm = () => {
   return (
     <>
       <Dialog>
-        <DialogTrigger className="bg-[#bbcf8d] font-light text-lg px-6 py-3 rounded-md">
+        <DialogTrigger className="bg-primaryColor font-light text-lg text-primaryColorText px-6 py-3 rounded-md ">
           Select Package
         </DialogTrigger>
         <DialogContent className="md:py-12 px-5 py-10 md:px-10">

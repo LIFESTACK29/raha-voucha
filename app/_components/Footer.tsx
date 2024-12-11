@@ -16,7 +16,7 @@ const Footer = () => {
                             No stress. No fuss. Just happiness wrapped in a
                             hamper and delivered with care 💚
                         </p>
-                        <a href="#gift" className=" bg-[#bbcf8d] text-black py-3 px-6 rounded block w-fit mx-auto mt-6">
+                        <a href="#gift" className="py-3 px-6 rounded block w-fit mx-auto mt-6 bg-primaryColor text-primaryColorText">
                             Choose a package
                         </a>
                     </div>

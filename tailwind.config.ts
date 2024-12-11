@@ -10,6 +10,8 @@ export default {
     theme: {
     	extend: {
     		colors: {
+				primaryColor : "#e0ffea",
+				primaryColorText : "#314057",
     			background: 'hsl(var(--background))',
     			foreground: 'hsl(var(--foreground))',
     			card: {

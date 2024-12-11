@@ -43,7 +43,7 @@ const faqData = [
 const Faq = () => {
   return (
     <ParentLayout>
-      <div className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto py-8 font-bold">
+      <div className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] mx-auto py-8 font-bold text-primaryColorText">
         <div>
           <h1 className="text-center text-2xl sm:text-3xl md:text-4xl mb-6">
             Frequently Asked Questions

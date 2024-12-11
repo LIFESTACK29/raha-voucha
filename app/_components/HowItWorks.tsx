@@ -21,7 +21,7 @@ const HowItWorks = () => {
     },
   ];
   return (
-    <section className="bg-[#bbcf8d]">
+    <section className="bg-primaryColor text-primaryColorText">
       <ParentLayout>
         <section className="py-12 mx-auto flex gap-4 md:flex-row flex-col">
           <div className="md:w-1/2 w-full flex flex-col justify-center items-center">
