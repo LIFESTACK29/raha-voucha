@@ -24,7 +24,7 @@ const Hero = () => {
               <br />
               this holiday season 🎄
             </h1>
-            <p className="md:tracking-wider text-[16px] mt-4 font-light md:text-xl text-white md:max-w-[700px] max-w-[426px] text-base md:font-normal">
+            <p className="md:tracking-wider text-base mt-4 font-light md:text-xl text-white md:max-w-[700px] max-w-[426px] md:font-normal">
               Celebrate the people who made your year unforgettable with
               thoughtfully curated hampers & food bundles—delivered free of
               charge by Raha.
