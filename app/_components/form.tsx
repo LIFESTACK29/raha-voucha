@@ -107,7 +107,7 @@ const ModalForm = () => {
         <DialogTrigger className="bg-primaryColor font-light text-lg text-primaryColorText px-6 py-3 rounded-md ">
           Select Package
         </DialogTrigger>
-        <DialogContent className="md:py-12 px-5 py-10 md:px-10">
+        <DialogContent className="md:py-12 px-5 py-10 md:px-10 text-primaryColorText">
           <DialogHeader>
             <DialogTitle className="text-left">Place an Order </DialogTitle>
             <DialogDescription className="h-[70vh] overflow-y-auto">
