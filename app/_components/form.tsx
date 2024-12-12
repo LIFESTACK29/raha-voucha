@@ -1,6 +1,6 @@
 "use client";
 
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent, useState, useRef } from "react";
 import {
   Dialog,
   DialogContent,
@@ -20,8 +20,19 @@ import {
 import { christmasPackages, packageOffers } from "@/utils/packages";
 import { addOrder } from "@/services/order";
 import { toast } from "sonner";
+import dynamic from "next/dynamic";
+import { DialogClose } from "@radix-ui/react-dialog";
+
+const PaystackButton = dynamic(
+  () => import("react-paystack").then((mod) => mod.PaystackButton),
+  { ssr: false }
+);
+
+const publicKey = process.env.NEXT_PUBLIC_RAHA_PAYSTACK_PUBLIC_KEY_TEST;
 
 const ModalForm = () => {
+  const closeRef = useRef<HTMLButtonElement>(null);
+
   const [senderDetails, setSenderDetails] = useState({
     sender_name: "",
     sender_email: "",
@@ -37,23 +48,27 @@ const ModalForm = () => {
       receiver_note: "",
       package_name: "",
       package_offer: "",
+      package_price: 0,
     },
   ]);
   const [loading, setLoading] = useState(false);
 
   const reqBody = { senderDetails, receiverDetails: recieverPackage };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(reqBody);
+  const totalPrice: number = recieverPackage.reduce(
+    (totalPrice, recieverPackage) => {
+      return (totalPrice += recieverPackage.package_price);
+    },
+    0
+  );
 
+  async function createUserOrder() {
     try {
       setLoading(true);
       const { status, message } = await addOrder(reqBody);
       if (status !== 200) {
         setLoading(false);
         toast.error(message);
-        return;
       }
       console.log(message);
       setLoading(false);
@@ -65,7 +80,42 @@ const ModalForm = () => {
       toast.error("Unable to place order. Please try again.");
       return;
     }
+  }
+
+  async function cancelUserOrder() {
+    setLoading(false);
+    toast.error("Unable to place order. Please try again.");
+  }
+
+  const componentProps = {
+    email: senderDetails.sender_email,
+    amount: totalPrice * 100, // Convert from kobo naira
+    metadata: {
+      // name: user?.name,
+      // number: "08113848299",
+    },
+    publicKey,
+    text: loading ? "Placing Order..." : "Place your order", //Process Payment
+    onSuccess: createUserOrder,
+    // SuccessToast("Thanks for doing business with us! Come back soon!!"),
+    onClose: cancelUserOrder,
   };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    // setLoading(true);
+   
+    // console.log(reqBody);
+    // console.log(totalPrice);
+  };
+
+  const handlePaystackClick = () => {
+
+    // Close the dialog immediately when Paystack button has been clicked
+    setTimeout(() => {
+      closeRef.current?.click();
+    }, 500);
+  }
 
   const addReceiverPackage = () => {
     setRecieverPackage([
@@ -78,6 +128,7 @@ const ModalForm = () => {
         receiver_note: "",
         package_name: "",
         package_offer: "",
+        package_price: 0,
       },
     ]);
   };
@@ -94,7 +145,12 @@ const ModalForm = () => {
     });
   };
 
-  const handleRecieverChange = (id: number, field: string, value: string) => {
+  const handleRecieverChange = (
+    id: number,
+    field: string,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    value: any
+  ) => {
     setRecieverPackage(
       recieverPackage.map((pkg) =>
         pkg.id === id ? { ...pkg, [field]: value } : pkg
@@ -234,9 +290,22 @@ const ModalForm = () => {
 
                       <div className="flex flex-col gap-8 md:flex-row p-2">
                         <Select
-                          onValueChange={(value) =>
-                            handleRecieverChange(pkg.id, "package_name", value)
-                          }
+                          onValueChange={(value) => {
+                            const [packageName, packagePrice] =
+                              value.split(" ");
+                            // I'm setting the packages  offer and price synchronously
+                            setRecieverPackage(
+                              recieverPackage.map((packageVal) =>
+                                packageVal.id === pkg.id
+                                  ? {
+                                      ...packageVal,
+                                      package_name: packageName,
+                                      package_price: parseInt(packagePrice),
+                                    }
+                                  : packageVal
+                              )
+                            );
+                          }}
                         >
                           <SelectTrigger className=" h-12 focus:border-green-400">
                             <SelectValue placeholder="Choose your Package" />
@@ -245,7 +314,8 @@ const ModalForm = () => {
                             {christmasPackages.map((christmasPackage) => (
                               <SelectItem
                                 key={christmasPackage.packageValue}
-                                value={`${christmasPackage.packageValue}`}
+                                // Set package name and package price inside a string
+                                value={`${christmasPackage.packageValue} ${christmasPackage.packagePrice}`}
                               >
                                 <h1>
                                   {christmasPackage.packageName} -{" "}
@@ -289,14 +359,18 @@ const ModalForm = () => {
 
                 <button
                   disabled={loading}
-                  className="w-full text-center bg-green-400 py-5 rounded-md duration-200 text-white"
+                  onClick={handlePaystackClick}
+                  className="w-full text-center bg-green-400 disabled:opacity-30 disabled:cursor-wait py-5 rounded-md duration-200 text-white"
                 >
-                  {loading ? "Placing Order..." : "  Place your Order"}
+                  {/* @ts-expect-error: The PaystackButton component is not typed in the project. */}
+                  <PaystackButton {...componentProps} />
                 </button>
               </form>
             </DialogDescription>
           </DialogHeader>
         </DialogContent>
+
+        <DialogClose ref={closeRef} className="hidden" />
       </Dialog>
     </>
   );
