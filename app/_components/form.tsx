@@ -239,7 +239,7 @@ const ModalForm = () => {
                               event.target.value
                             )
                           }
-                          placeholder="Recieier's Name"
+                          placeholder="Receiver's Name"
                         />
                         <input
                           type="text"
