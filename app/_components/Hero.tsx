@@ -4,24 +4,37 @@ import ParentLayout from './ParentLayout';
 import Image from 'next/image';
 
 const Hero = () => {
-    const texts = ['employees', 'client', 'friends', 'partners'];
-    const [currentText, setCurrentText] = useState(texts[0]);
-    const [isVisible, setIsVisible] = useState(true);
-
+    const texts = ['employees', 'clients', 'friends', 'partners'];
+  
+    const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+    const [displayedText, setDisplayedText] = useState("");
+    const [isDeleting, setIsDeleting] = useState(false);
+    const [typingSpeed, setTypingSpeed] = useState(500);
+  
     useEffect(() => {
-        const interval = setInterval(() => {
-            setIsVisible(false);
-            setTimeout(() => {
-                setCurrentText((prev) => {
-                    const currentIndex = texts.indexOf(prev);
-                    return texts[(currentIndex + 1) % texts.length];
-                });
-                setIsVisible(true);
-            }, 600);
-        }, 3000);
+      const currentPhrase = texts[currentPhraseIndex];
+      const fullText = currentPhrase;
+  
+      const handleTyping = () => {
+        if (!isDeleting && displayedText !== fullText) {
+          setDisplayedText(fullText.slice(0, displayedText.length + 1));
+          setTypingSpeed(100);
+        } else if (isDeleting && displayedText !== "") {
+          setDisplayedText(fullText.slice(0, displayedText.length - 1));
+          setTypingSpeed(50);
+        } else if (!isDeleting && displayedText === fullText) {
+          setTimeout(() => setIsDeleting(true), 1500);
+        } else if (isDeleting && displayedText === "") {
+          setIsDeleting(false);
+          setCurrentPhraseIndex((prevIndex) => (prevIndex + 1) % texts.length);
+        }
+      };
+  
+      const typingTimeout = setTimeout(handleTyping, typingSpeed);
+  
+      return () => clearTimeout(typingTimeout);
+    }, [displayedText, isDeleting, currentPhraseIndex, typingSpeed]);
 
-        return () => clearInterval(interval);
-    }, []);
 
     return (
         <div className="h-screen bg-hero_bg bg-cover bg-no-repeat bg-center text-white pt-6 overflow-hidden relative">
@@ -42,11 +55,9 @@ const Hero = () => {
                         <h1 className="leading-normal text-2xl max-w-[997px] md:text-6xl text-[#bbcf8d] w-full md:leading-[80px] animate-fade-in font-bold pb-4 md:pb-0">
                             🎄 Thoughtfully gift your <br />{' '}
                             <span
-                                className={`text-white transition-opacity duration-700 ${
-                                    isVisible ? 'opacity-100' : 'opacity-0'
-                                }`}
+                                className={`text-white`}
                             >
-                                {currentText}
+                                {displayedText}  <span className="cursor">|,</span>
                             </span>
                             <br />
                             this holiday season 🎄

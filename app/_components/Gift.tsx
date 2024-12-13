@@ -27,7 +27,7 @@ const Gift = ({ packages }: { packages: any }) => {
   return (
     <ParentLayout>
       <div className="py-12 md:w-7/12 mx-auto text-center" id="gift">
-        <p className="leading-normal md:text-4xl font-bold text-2xl text-primaryColorText">
+        <p className="leading-normal md:text-4xl font-bold text-2xl text-[rgb(0,36,0)]">
           Thoughtfully curated gifts for every budget
         </p>
         <p className="leading-normal font-light mt-4 text-neutral-gray-100 text-base md:text-xl md:font-normal text-primaryColorText">
