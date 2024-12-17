@@ -76,7 +76,7 @@ const ModalForm = () => {
             console.log(message);
             setLoading(false);
             toast.success(message);
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          
         } catch (error: any) {
             console.log(error);
             setLoading(false);
@@ -169,7 +169,7 @@ const ModalForm = () => {
     const handleRecieverChange = (
         id: number,
         field: string,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      
         value: any
     ) => {
         setRecieverPackage(
