@@ -76,7 +76,7 @@ const ModalForm = () => {
             console.log(message);
             setLoading(false);
             toast.success(message);
-          
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.log(error);
             setLoading(false);
@@ -122,10 +122,12 @@ const ModalForm = () => {
             setTimeout(() => {
                 closeRef.current?.click();
             }, 500);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             if (error instanceof Yup.ValidationError) {
                 // console.log(error)
                 const formattedErrors: { [key: string]: string } = {};
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 error.inner.forEach((err: any) => {
                     if (err.path) {
                         formattedErrors[err.path] = err.message;
@@ -169,7 +171,7 @@ const ModalForm = () => {
     const handleRecieverChange = (
         id: number,
         field: string,
-      
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         value: any
     ) => {
         setRecieverPackage(
