@@ -57,7 +57,7 @@ const Hero = () => {
                             <span
                                 className={`text-white`}
                             >
-                                {displayedText}  <span className="cursor">|,</span>
+                                {displayedText}  <span className="cursor">|</span>
                             </span>
                             <br />
                             this holiday season 🎄
