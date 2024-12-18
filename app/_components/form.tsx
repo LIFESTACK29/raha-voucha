@@ -28,7 +28,7 @@ const PaystackButton = dynamic(
   { ssr: false }
 );
 
-const publicKey = process.env.NEXT_PUBLIC_RAHA_PAYSTACK_PUBLIC_KEY_TEST;
+const publicKey = process.env.NEXT_PUBLIC_RAHA_PAYSTACK_PUBLIC_KEY;
 
 const ModalForm = () => {
   const closeRef = useRef<HTMLButtonElement>(null);
